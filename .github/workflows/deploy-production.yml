@@ -1,0 +1,20 @@
+name: Deploy to Production
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  deploy-production:
+    uses: ./.github/workflows/reusable-deploy.yml
+    with:
+      # Vite env
+      mode: "production"
+      # Deployment variables
+      project_id: "shopcat-prod-92744"
+      project_number: "208915687327"
+      service_name: "shopcat-adminpanel-prod"
+      region: "europe-west1"
+      registry_path: "europe-west1-docker.pkg.dev"
+      image_name: "shopcat-prod-92744/shopcat/shopcat-adminpanel"
