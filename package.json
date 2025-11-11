@@ -6,6 +6,8 @@
     "dev": "vite",
     "build": "tsup && node ./scripts/generate-types.js",
     "build:preview": "vite build",
+    "build:preview:staging": "vite build --mode staging",
+    "build:preview:production": "vite build --mode production",
     "preview": "vite preview",
     "test": "vitest --run",
     "i18n:validate": "node ./scripts/i18n/validate-translation.js",

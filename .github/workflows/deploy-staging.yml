@@ -1,0 +1,20 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-staging:
+    uses: ./.github/workflows/reusable-deploy.yml
+    with:
+      # Vite env
+      mode: "staging"
+      # Deployment variables
+      project_id: "shopcat-stg-55606"
+      project_number: "575553836979"
+      service_name: "shopcat-adminpanel-staging"
+      region: "europe-west1"
+      registry_path: "europe-west1-docker.pkg.dev"
+      image_name: "shopcat-stg-55606/shopcat/shopcat-adminpanel"
