@@ -17,11 +17,8 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Rebuild native dependencies for the current platform
-RUN npm rebuild
-
-# Force install optional dependencies that may have been skipped
-RUN npm install --no-save --force
+# Rebuild native dependencies for the current platform and install missing optional dependencies
+RUN npm rebuild && npm install --no-save @rollup/rollup-linux-x64-musl
 
 # Accept MODE as build argument
 ARG MODE=staging
