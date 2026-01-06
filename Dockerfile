@@ -20,6 +20,9 @@ COPY . .
 # Rebuild native dependencies for the current platform
 RUN npm rebuild
 
+# Force install optional dependencies that may have been skipped
+RUN npm install --no-save --force
+
 # Accept MODE as build argument
 ARG MODE=staging
 ENV MODE=${MODE}
