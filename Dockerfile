@@ -1,5 +1,6 @@
 # Use the official Node.js runtime as the base image
-FROM node:20-alpine AS base
+# Pin to 20.20.0+ to fix path traversal in --allow-fs-read/--allow-fs-write (CVE)
+FROM node:20.20-alpine AS base
 
 # Install dependencies only when needed
 FROM base AS deps
@@ -28,7 +29,7 @@ ENV MODE=${MODE}
 RUN npm run build:preview:${MODE}
 
 # Production image, copy all the files and serve with a simple HTTP server
-FROM node:20-alpine AS runner
+FROM base AS runner
 WORKDIR /app
 
 # Install serve globally
